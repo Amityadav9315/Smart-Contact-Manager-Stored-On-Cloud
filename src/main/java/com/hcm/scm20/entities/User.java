@@ -120,4 +120,9 @@ public class User implements UserDetails {
 
     }
 
+    public static Object withDefaultPasswordEncoder() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'withDefaultPasswordEncoder'");
+    }
+
 }

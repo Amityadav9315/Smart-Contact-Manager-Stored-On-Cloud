@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.hcm.scm20.entities.User;
 import com.hcm.scm20.forms.UserForm;
 import com.hcm.scm20.helpers.Message;
@@ -100,7 +98,8 @@ public class PageController {
                user.setProfilePic(null);
 
 
-                 User savedUser=userService.saveUser(user);
+                 @SuppressWarnings("unused")
+                User savedUser=userService.saveUser(user);
                  System.out.println("user saved");
         
               // message ="registration succsessful"
