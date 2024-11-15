@@ -19,7 +19,7 @@ public class SecurityCustomUserDetailService implements UserDetailsService {
         
         //apne user ko load karna hai
 
-        return userRepo .findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("User not found with email"+ username));
+        return userRepo .findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("User not found with this email" + username));
        
     }
 

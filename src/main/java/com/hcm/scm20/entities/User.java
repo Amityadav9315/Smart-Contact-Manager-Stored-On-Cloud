@@ -23,11 +23,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-@Entity
-@Table(name="users")
+@Entity(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -38,26 +37,23 @@ public class User implements UserDetails {
     @Id
     private String userId;
 
-    @Column(name="user_name", nullable=false)
+    @Column(name = "user_name", nullable = false)
     private String name;
 
     @Column(unique = true, nullable = false)
     private String email;
-    @Getter(AccessLevel.NONE)
 
+    @Getter(AccessLevel.NONE)
     private String password;
 
-    @Column(length = 100)
+    @Column(length = 1000)
     private String about;
 
-    @Column(length = 100)
+    @Column(length = 1000)
     private String profilePic;
 
     private String phoneNumber;
 
-    @Getter(value = AccessLevel.NONE)
-
-    // Account status fields
     private boolean enabled = true;
     private boolean emailVerified = false;
     private boolean phoneVerified = false;
@@ -67,27 +63,27 @@ public class User implements UserDetails {
 
     private String providerUserId;
 
-    // Relationship with Contact entities
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Contact> contacts = new ArrayList<>();
 
-    // UserDetails interface methods
+    // Roles stored as strings in a list, converted to authorities for Spring Security
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roleList=new ArrayList<>();
-   
+    private List<String> roleList = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // list of role(User,admin)
-        //collection of SimpleGrandAuthority[roles{admin,user}]
-        Collection<SimpleGrantedAuthority> roles=roleList.stream().map(role-> new SimpleGrantedAuthority(role))
-        .collect(Collectors.toList());
-        
-        return roles;
+        // Convert role strings to SimpleGrantedAuthority for Spring Security
+        return roleList.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
-    
-    //for this project
-    //email id  hai wahi hamara username
+
+    // UserDetails methods
+
+    @Override
+    public String getUsername() {
+        return this.email; // Using email as the username
+    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -105,24 +101,12 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return this.email; // Assuming email as username
+    public String getPassword() {
+        return this.password;
     }
 
     @Override
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return this.enabled;
     }
-     
-    @Override
-    public String getPassword(){
-        return this.password;
-
-    }
-
-    public static Object withDefaultPasswordEncoder() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'withDefaultPasswordEncoder'");
-    }
-
 }
