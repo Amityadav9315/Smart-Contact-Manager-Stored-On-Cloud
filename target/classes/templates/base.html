@@ -15,7 +15,7 @@ lang="en" th:fragment="parent(content,title,script)" xmlns:th="http://www.thymel
 </head>
 <body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
     <!--   common header-->
-    <div data-th-replace="navbar :: navbar"></div> 
+    <div data-th-replace="(~{navbar::navbar})"></div> 
    <div class="p-4">
     <section data-th-replace="${content}"></section>
 </div>

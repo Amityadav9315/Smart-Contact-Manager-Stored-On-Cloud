@@ -12,15 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.hcm.scm20.services.impl.SecurityCustomUserDetailService;
 
 
-
-@Configuration
-public class SecurityConfig {
-
-
-
-  
-
-       @Autowired
+     @Configuration
+      public class SecurityConfig {
+      @Autowired
         private SecurityCustomUserDetailService userDetailService;
 
         //configuration of Authentication provider from spring security
@@ -58,10 +52,10 @@ public class SecurityConfig {
           
          });
 
-         httpSecurity.logout(logoutForm->{
-          logoutForm.logoutUrl("/logout");
-          logoutForm.logoutSuccessUrl("/login?logout=true");
-         });
+      //   httpSecurity.logout(logoutForm->{
+       //   logoutForm.logoutUrl("/logout");
+      //    logoutForm.logoutSuccessUrl("/login?logout=true");
+       //  });
         return httpSecurity.build();
 
        }
