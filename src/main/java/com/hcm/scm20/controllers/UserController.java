@@ -1,7 +1,6 @@
 package com.hcm.scm20.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,14 +12,14 @@ public class UserController {
 
 
     //user dashboard page
-    @GetMapping("/dashboard")
+    @RequestMapping(value = "/dashboard",method = RequestMethod.GET)
     public String userDashbaord() {
         System.out.println("User dashboard");
         return "user/dashboard";
     }
 
     //user profile page
-    @GetMapping("/profile")
+    @RequestMapping(value = "/profile",method = RequestMethod.GET)
     public String userProfile() {
         System.out.println("User profile");
         return "user/profile";
@@ -28,3 +27,4 @@ public class UserController {
     
 
 }
+

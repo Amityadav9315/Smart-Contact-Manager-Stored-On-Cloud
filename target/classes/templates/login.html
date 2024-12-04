@@ -19,19 +19,14 @@
                     <p class="font-normal text-gray-400 dark:text-gray-400">Start managing contacts on cloud...</p>
                     
                     <!-- this is form -->
-                    <form
-                     method="post"
-                     th-action="@{'/authenticate'}"
-                     class="mt-5"
-                    
-                     >
+                    <form action="/authenticate" method="post">
                         
                         
                         
 
                         <!-- username field -->
                         <div class="mb-3">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <label form="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                             <input  name="email" type="email" id="email"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
                           
                           <!--  <p 
@@ -73,3 +68,4 @@
     </script>
 </body>
 </html>
+

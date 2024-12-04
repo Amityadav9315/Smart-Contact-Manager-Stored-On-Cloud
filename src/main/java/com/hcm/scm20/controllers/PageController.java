@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import com.hcm.scm20.entities.User;
 import com.hcm.scm20.forms.UserForm;
 import com.hcm.scm20.helpers.Message;
 import com.hcm.scm20.helpers.MessageType;
 import com.hcm.scm20.services.UserService;
 
+import jakarta.annotation.Generated;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -116,4 +119,3 @@ public class PageController {
         return "redirect:/register";  // Redirect to register page
     }
 }
-
